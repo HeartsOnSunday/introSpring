@@ -33,7 +33,7 @@ function bookClownCar() {
     reservedCars[2].push(availableCarsByRegistration[2].pop());
 }
 
-function bookQueen() {
+function bookVan() {
     reservedCars[3].push(availableCarsByRegistration[3].pop());
 }
 
@@ -49,9 +49,13 @@ function reservationReport() {
        if (reservedCars[0]) {
         console.log(reservedCars.length, "happy customers drove off in a ", carTypes[0]);
     }  if (reservedCars[1]) {
-        console.log(reservedCars.length, "happy customers drove off in a ", carTypes[2]);
+        console.log(reservedCars.length, "happy customers drove off in a ", carTypes[1]);
     } if (reservedCars[2]) {
         console.log(reservedCars.length, "happy customers drove off in a ", carTypes[2]);
+    } if (reservedCars[3]) {
+        console.log(reservedCars.length, "happy customers drove off in a ", carTypes[3]);
+    } if (reservedCars[4]) {
+        console.log(reservedCars.length, "happy customers drove off in a ", carTypes[4]);
     } 
     return totalReservationProfit;
 };
