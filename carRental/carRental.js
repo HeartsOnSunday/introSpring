@@ -4,9 +4,8 @@ var totallySketchCarRentalSpot = "JavaScript Hotel";
 
 var carTypes = ["Smashed Batmobile", "Dodge Dart", "Clown Car", "Van full of \'Candy\'", "Ford Pinto"];
 var carPrices = [ 175, 185, 140, 215, 230];
-var availableCarsByRegistration = [[RI-101, RI-102, MA-103, CT-104], [RI-105, AZ-106, TX-107, RI-108], [FL-201, CT-202, MA-203, FL-204],[301, 302, 303], [304, 305]];
+var availableCarsByRegistration = [["RI-101", "RI-102", "MA-103", "CT-104"], ["RI-105", "AZ-106", "TX-107", "RI-108"], ["FL-201", "CT-202", "MA-203", "FL-204"],["LA-301", "VT-302", "RI-303"], ["MA-304", "VT-305"]];
 var reservedCars = [[], [], [], [], []];
-
 
 function availableCarsQty() {
     var totalAvailableCarsQty = 0;
@@ -23,32 +22,36 @@ function totalAvailableCarsReport() {
 }
 
 function bookBatmobile() {
-    reservedCars[0].push(availableCatrsByRegistration[0].pop());
+    reservedCars[0].push(availableCarsByRegistration[1].pop());
 }
 
-function bookSingle() {
-    reservedCars[1].push(availableCatrsByRegistration[1].pop());
+function bookDodge() {
+    reservedCars[1].push(availableCarsByRegistration[1].pop());
 }
 
-function bookFull() {
-    reservedCars[2].push(availableCatrsByRegistration[2].pop());
+function bookClownCar() {
+    reservedCars[2].push(availableCarsByRegistration[2].pop());
 }
 
 function bookQueen() {
-    reservedCars[3].push(availableCatrsByRegistration[3].pop());
+    reservedCars[3].push(availableCarsByRegistration[3].pop());
 }
 
-function bookKing() {
-    reservedCars[4].push(availableCatrsByRegistration[4].pop());
+function bookPinto() {
+    reservedCars[4].push(availableCarsByRegistration[4].pop());
 }
 
 function reservationReport() {
     var totalReservationProfit = 0;
     for (var i = 0; i <reservedCars.length; i++) {
-       totalReservationProfit += reservedCars[i].length * roomPrices[i];
-       if (reservedCars[0]) {
-           console.log(reservedCars.length, "happy customers drove off in a " carTypes[0]);
+       totalReservationProfit += reservedCars[i].length * carPrices[i];
        }
-    }
-    return totalRoomSales;
-}
+       if (reservedCars[0]) {
+        console.log(reservedCars.length, "happy customers drove off in a ", carTypes[0]);
+    }  if (reservedCars[1]) {
+        console.log(reservedCars.length, "happy customers drove off in a ", carTypes[2]);
+    } if (reservedCars[2]) {
+        console.log(reservedCars.length, "happy customers drove off in a ", carTypes[2]);
+    } 
+    return totalReservationProfit;
+};
