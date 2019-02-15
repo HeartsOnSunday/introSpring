@@ -47,7 +47,10 @@ function reservationReport() {
        totalReservationProfit += reservedCars[i].length * carPrices[i];
        }
        if (reservedCars[0]) {
-        console.log(reservedCars[0].length, "happy customers drove off in a ", carTypes[0]);
+           if (reservedCars[0] == 1) {
+               console.log(reservedCars[0].length, "happy customer drove off in a", carTypes[0]);
+           } else {
+        console.log(reservedCars[0].length, "happy customers drove off in a", carTypes[0]);
     }  if (reservedCars[1]) {
         console.log(reservedCars[1].length, "happy customers drove off in a ", carTypes[1]);
     } if (reservedCars[2]) {
@@ -57,5 +60,6 @@ function reservationReport() {
     } if (reservedCars[4]) {
         console.log(reservedCars[4].length, "happy customers drove off in a ", carTypes[4]);
     } 
+}
     return totalReservationProfit;
 };
