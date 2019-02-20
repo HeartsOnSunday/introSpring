@@ -8,42 +8,50 @@
 const Regex = require("regex");
 const fs = require('fs');
 
+let arrayEmpDept = [];
 
 fs.readFile("./datasets/load_dept_emp.txt", 'utf8', function(err, data) {
     if (err) throw err; //throw isa console log and new line
-    var arrayEmpDept = data.split("\n");
+    //arrayEmpDept = data.split("\n");
+    arrayEmpDept = data;
     console.log(arrayEmpDept);
     // for (var i = 0; i < arraydat.length; i++) {
     // console.log(`The data on line ${i + 1} is ${arraydat[i]}`);
     // }
 })
 
-fs.readFile("./datasets/load_salaries1.txt", 'utf8', function(err, data) {
-    if (err) throw err; //throw isa console log and new line
-    var arraySalaries = data.split("\n");
-    console.log(arraySalaries);
-    // for (var i = 0; i < arraydat.length; i++) {
-    // console.log(`The data on line ${i + 1} is ${arraydat[i]}`);
-    // }
-})
 
-fs.readFile("./datasets/load_dept_names.txt", 'utf8', function(err, data) {
-    if (err) throw err; //throw isa console log and new line
-    var arrayDeptNames = data.split("\n");
-    console.log(arrayDeptNames);
-    // for (var i = 0; i < arraydat.length; i++) {
-    // console.log(`The data on line ${i + 1} is ${arraydat[i]}`);
-    // }
-})
+//console.log(arrayEmpDept[0]);
+// fs.readFile("./datasets/load_dept_names.txt", 'utf8', function(err, data) {
+//     if (err) throw err; //throw isa console log and new line
+//     var arrayDeptNames = data.split("\n");
+//     console.log(arrayDeptNames);
+//     // for (var i = 0; i < arraydat.length; i++) {
+//     // console.log(`The data on line ${i + 1} is ${arraydat[i]}`);
+//     // }
+// })
 
-fs.readFile("./datasets/load_employee.txt", 'utf8', function(err, data) {
-    if (err) throw err; //throw isa console log and new line
-    var arrayEmployees = data.split("\n");
-    console.log(arrayEmployees);
-    // for (var i = 0; i < arraydat.length; i++) {
-    // console.log(`The data on line ${i + 1} is ${arraydat[i]}`);
-    // }
-})
+// fs.readFile("./datasets/load_employee.txt", 'utf8', function(err, data) {
+//     if (err) throw err; //throw isa console log and new line
+//     var arrayEmployees = data.split("\n");
+//     console.log(arrayEmployees);
+//     // for (var i = 0; i < arraydat.length; i++) {
+//     // console.log(`The data on line ${i + 1} is ${arraydat[i]}`);
+//     // }
+// })
+
+// fs.readFile("./datasets/load_salaries1.txt", 'utf8', function(err, data) {
+//     if (err) throw err; //throw isa console log and new line
+//     var arraySalaries = data.split("\n");
+//     console.log(arraySalaries);
+//     // for (var i = 0; i < arraydat.length; i++) {
+//     // console.log(`The data on line ${i + 1} is ${arraydat[i]}`);
+//     // }
+// })
+
+
+
+
 
 
 
