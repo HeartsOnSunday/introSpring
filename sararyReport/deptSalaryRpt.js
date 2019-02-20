@@ -8,16 +8,30 @@
 const Regex = require("regex");
 const fs = require('fs');
 
-let arrayEmpDept = [];
+//let arrayEmpDept = [];
 
 fs.readFile("./datasets/load_dept_emp.txt", 'utf8', function(err, data) {
     if (err) throw err; //throw isa console log and new line
     //arrayEmpDept = data.split("\n");
-    arrayEmpDept = data;
-    console.log(arrayEmpDept);
+    //arrayEmpDept = data;
+    //var loadDeptArray = data;
+    //var loadDeptArray = data.replace(/[a-z]/gi);
+    var loadDeptArray = data.replace(/INSERT INTO 'dept_emp' VALUES /g, "");
+    //console.log(arrayEmpDept);
+    //console.log(loadDeptArray);
+    var splitLoadDeptArray = loadDeptArray.split("\n");
+    //console.log(splitLoadDeptArray[0]);
+    // console.log(splitLoadDeptArray[0]);
     // for (var i = 0; i < arraydat.length; i++) {
     // console.log(`The data on line ${i + 1} is ${arraydat[i]}`);
     // }
+for (var i = 0; i < splitLoadDeptArray.length; i++) {
+    if (splitLoadDeptArray[i].slice(28,32) == '9999') {
+        console.log(splitLoadDeptArray[i]);
+    }
+ }
+
+
 })
 
 
