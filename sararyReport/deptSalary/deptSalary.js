@@ -12,7 +12,7 @@ var employeeId = [];
 var employeeName = [];
 var salaries = [];
 
-// Process 'load_dept_names.txt' file  populte deptartmentId and departments
+// Process 'load_dept_names.txt' file and populte deptartmentId and departments
 fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
     if (err) throw err;
     
@@ -32,78 +32,53 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
 
     console.log(`Departments are: ${departmentId}`);
     console.log(`Departments are: ${departments}`);
-    // console.log(employeeId);
-    // console.log(employeeName);
-    // console.log(salaries);
+    // console.log(`Employee Names placeholders: ${employeeName}`);
+    // console.log(`Employee Salaries placehonders: ${salaries}`);
 });
 
-/* Process 'load_dept_emp.txt' file */
+//Employee by Department
 fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
     if (err) throw err;
     var employeeDataClean = data.replace(/INSERT INTO 'dept_emp' VALUES /g, "");
     var employeeDataArray = employeeDataClean.split('\n');
 
-    for (var i=0; i < employeeDataArray.length; i++) {
-        if (employeeDataArray[i].slice(28,32) == '9999'){
-    
-            employeeId[departmentId.indexOf(employeeDataArray[i].slice(8,12))].push(employeeDataArray[i].slice(2,6));
+    for (var j=0; j < employeeDataArray.length; j++) {
+        if (employeeDataArray[j].slice(28,32) == '9999'){
+
+            employeeId[departmentId.indexOf(employeeDataArray[j].slice(8,12))].push(employeeDataArray[j].slice(2,6));
             
         } 
-        //console.log(employeeDataArray[i].slice(8,12));
-        //console.log(employeeDataArray[i].slice(1,6));
-        //console.log(departmentId.indexOf(employeeDataArray[i].slice(8,12)));
-        //console.log(employeeId[departmentId.indexOf(employeeDataArray[i].slice(7,11))].push(employeeDataArray[i].slice(2,6));)
     }
     console.log(`Employee ids are: ${employeeId}`);
-   // console.log(employeeDataClean);
-   // console.log(employeeDataArray);
+  
 });
 
 
-//procure the employee current salary by Id
+//Salary by ID
+//push to salaries
 fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
 if (err) throw err;
 var salaryAgregate = data.split('\n');
-//console.log(`Salaries are: ${salaryAgregate}`);
+
 
 //current salary for Employee Id 
-for (var j = 0; j < salaryAgregate.length; j++) {
-    if (salaryAgregate[j].slice(27,31) == 9999) {
-    console.log(`Employee ${salaryAgregate[j].slice(1,6)} earned $: ${salaryAgregate[j].slice(7,12)} in year: ${salaryAgregate[j].slice(27,31)}`);
+for (var k = 0; k < salaryAgregate.length; k++) {
+    if (salaryAgregate[k].slice(27,31) == 9999) {
+    console.log(`Employee ${salaryAgregate[k].slice(1,6)} earned $: ${salaryAgregate[k].slice(7,12)} in year: ${salaryAgregate[k].slice(27,31)}`);
 }
 }
 });
 
+//Employee NAMES by ID
+//push to employeeName
+fs.readFile('load_employee.txt', 'utf8', function(err,data) {
+if(err) throw err;
+var employeeNameClear = data.replace(/,/g, "").replace(/'/g, " ");
+var employeeAgregate = employeeNameClear.split("\n");
 
-
-console.log(`Employee names are: ${employeeName}`);
-
-
-
-
-
-
-
-
-
-/*
-
-
-// Process 'load_employee.txt' file 
-fs.readFile('load_employee.txt', 'utf8', function(err, data) {
-    if (err) throw err;
-
-    var employeeNameArray = data.slice("\n");
-   // console.log(employeeNameArray);
-
- 
-for (var i = 0; i < employeeNameArray.length; i++) {
-    employeeName.push(employeeNameArray[i].slice(22,-20));
+for (var l = 0; l < employeeAgregate.length; l++) {
+console.log(`Employee id ${employeeAgregate[l].slice(1,6)} is named: ${employeeAgregate[l].slice(18,-16)}`);
 }
-console.log(employeeName);
-//splice data from employeeNameArray (22,-19)
-//employeeName[].push(emplyeeNameArray.slice(22,-19));
-//}
-});
+})
 
-*/
+
