@@ -10,6 +10,22 @@ var departments = [];
 var employeeId = [];
 var employeeName = [];
 var salaries = [];
+//////////////////////////////////////////////////FIXITHERE!!! FOR LOOP WITH Q AND R NOT WORKING
+//function to calculate department salaries
+function salary_Calculation() {
+    deptSalaryCounter = [];
+    var salaryCounter = 0;
+       for (var q = 0; q < salaries.length; q++) {
+           
+            deptSalaryCounter.push([]);
+            for (var r = 0; r < salaries[q].length; r++) {
+                 salaryCounter += salaries[q][r];
+                 console.log(`Curent salary: ${salries[q][r]}`);
+            }
+            deptSalaryCounter[q].push(salaryCounter);
+        }
+        console.log(`Department totals are: ${deptSalaryCounter}`);
+}
 
 //Load 'load_dept_names.txt' and populte deptartmentId and departments in single dimensional arrays
 //push placeholders to multidimensional arrays
@@ -100,20 +116,8 @@ for (var n = 0; n < employeeAgregate.length; n++) {
         }
     }
     console.log(`Employee names are : ${employeeName}`);
+    salary_Calculation();
 });
 
-// function salary_Calculation() {
-//     deptSalaryCounter = [];
-//        for (var q = 0; q < salaries.length; q++) {
-//             var salaryCounter = 0;
-//             deptSalaryCounter.push([]);
-//             for (var r = 0; r < salries[q].length; r++) {
-//                  salaryCounter += salaries[q][r];
-//                  console.log(salries[q][r]);
-//             }
-//             deptSalaryCounter[q].push(salaryCounter);
-//         }
-//         console.log(`${deptSalaryCounter}`);
-// }
 
-// salary_Calculation();
+
