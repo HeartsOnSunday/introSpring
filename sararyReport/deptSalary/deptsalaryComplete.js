@@ -1,30 +1,36 @@
 var fs = require('fs');
-/* 1. Create all single and multi arrarys as empty arrays
-push single sting data elements into an array as a single element push array data into an array to form multi d arrays */
+/* 1. Create all single and multi arrarys as empty arrays push single sting data elements into an array as a single element push array data into an array to form multi d arrays */
 
 //single arrays
 var departmentId = [];
 var departments = [];
-
 //will become multi dimensional arrays
 var employeeId = [];
 var employeeName = [];
 var salaries = [];
+//console.log(`Empty array: ${salaries}`);
 //////////////////////////////////////////////////FIXITHERE!!! FOR LOOP WITH Q AND R NOT WORKING
 //function to calculate department salaries
 function salary_Calculation() {
-    deptSalaryCounter = [];
+    var deptSalaryCounter = [];
     var salaryCounter = 0;
        for (var q = 0; q < salaries.length; q++) {
            
             deptSalaryCounter.push([]);
             for (var r = 0; r < salaries[q].length; r++) {
-                 salaryCounter += salaries[q][r];
-                 console.log(`Curent salary: ${salries[q][r]}`);
+                 salaryCounter += parseInt(salaries[q][r]);
+                 //salaryCounter += salaries[q][r];
+                 console.log(`Curent salary: ${salaries[q][r]}`);
             }
             deptSalaryCounter[q].push(salaryCounter);
         }
         console.log(`Department totals are: ${deptSalaryCounter}`);
+        //console.log(`Is this a number: ${parseInt(salaries[0][0])}`);
+        console.log(`Salary Report: \n`);
+        //Sum that shit up!
+        for (var s = 0; s < deptSalaryCounter.length; s++) {
+            console.log(`${departments[s]} Department ${departmentId[s]} Annual Salary: ${deptSalaryCounter[s]} \n`);
+        }
 }
 
 //Load 'load_dept_names.txt' and populte deptartmentId and departments in single dimensional arrays
@@ -44,9 +50,10 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
         employeeName.push([]);
         salaries.push([]);
     }
+    //console.log(`Empty salaries: ${salaries}`);
+    //console.log(`Departments Id numbers are: ${departmentId}`); VALIDATED
+    //console.log(`Department Names are: ${departments}`); VALIDATED
 
-    console.log(`Departments Id numbers are: ${departmentId}`);
-    console.log(`Department Names are: ${departments}`);
 
 });
 
@@ -60,10 +67,17 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
         if (employeeDataArray[j].slice(28,32) == '9999'){
 
             employeeId[departmentId.indexOf(employeeDataArray[j].slice(8,12))].push(employeeDataArray[j].slice(1,6));
-            console.log(`Employee #: ${employeeDataArray[j].slice(1,6)} works in department # ${employeeDataArray[j].slice(8,12)}`)
+            //console.log(`Employee #: ${employeeDataArray[j].slice(1,6)} works in department # ${employeeDataArray[j].slice(8,12)}`); VALID
         } 
     }
-    console.log(`Employee ids are: ${employeeId}`);
+    //Populate subArrays for departments without employees  
+    for (var x = 0; x < employeeId.length; x++) {
+        if (employeeId[x] == "") {
+            employeeId[x].push("N/A");
+        }
+    }
+
+    //console.log(`Employee ids are: ${employeeId}`);
   
 });
 
@@ -99,7 +113,7 @@ console.log(`salaries are: ${salaries}`);
 //employee id and name
 fs.readFile('load_employee.txt', 'utf8', function(err,data) {
     if(err) throw err;
-    var employeeNameClear = data.replace(/,/g, "").replace(/'/g, " ");  //combine??
+    var employeeNameClear = data.replace(/INSERT INTO `employees` VALUES /, "").replace(/,/g, "").replace(/'/g, " ");  //combine??
     var employeeAgregate = employeeNameClear.split("\n");
 
 for (var n = 0; n < employeeAgregate.length; n++) {
