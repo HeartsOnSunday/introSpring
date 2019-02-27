@@ -41,11 +41,10 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
     var deptDataArray = deptDataClean.split('\n');
 
     for (var i = 0; i < deptDataArray.length; i++) {
-        //populate single-dimensional arrays with DATA
+//populate single-dimensional arrays with DATA
         departmentId.push(deptDataArray[i].slice(2,6));
         departments.push(deptDataArray[i].slice(9,-3));
-
-        //populate multi-dimensional Arrays with empty sub-arrays (sans Data!)
+//populate multi-dimensional Arrays with empty sub-arrays (sans Data!)
         employeeId.push([]);
         employeeName.push([]);
         salaries.push([]);
@@ -53,8 +52,6 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
     //console.log(`Empty salaries: ${salaries}`);
     //console.log(`Departments Id numbers are: ${departmentId}`); VALIDATED
     //console.log(`Department Names are: ${departments}`); VALIDATED
-
-
 });
 
 //Employee by Department //id slice, department slice and 9999 status slice
@@ -67,7 +64,7 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
         if (employeeDataArray[j].slice(28,32) == '9999'){
 
             employeeId[departmentId.indexOf(employeeDataArray[j].slice(8,12))].push(employeeDataArray[j].slice(1,6));
-            //console.log(`Employee #: ${employeeDataArray[j].slice(1,6)} works in department # ${employeeDataArray[j].slice(8,12)}`); VALID
+            //console.log(`Employee #: ${employeeDataArray[j].slice(1,6)} works in department # ${employeeDataArray[j].slice(8,12)}`); //VALID
         } 
     }
     //Populate subArrays for departments without employees  
@@ -77,7 +74,7 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
         }
     }
 
-    //console.log(`Employee ids are: ${employeeId}`);
+    console.log(`Employee ids are: ${employeeId}`);
   
 });
 
@@ -88,23 +85,29 @@ var salaryDataArray;
 //push to salaries
 //employee id, employee salary, 9999 status
 fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
-if (err) throw err;
-salaryDataClean = data.replace(/INSERT INTO `salaries` VALUES /g, "");
-salaryDataArray = salaryDataClean.split('\n');
+    if (err) throw err;
+        salaryDataClean = data.replace(/INSERT INTO `salaries` VALUES /g, "");
+        salaryDataArray = salaryDataClean.split('\n');
 
 //current salary for Employee Id 
-for (var k = 0; k < salaryDataArray.length; k++) {
-    if (salaryDataArray[k].slice(27,31) == '9999') {
-    //console.log(`Employee ${salaryDataArray[k].slice(1,6)} earned $: ${salaryDataArray[k].slice(7,12)} in year: ${salaryDataArray[k].slice(27,31)}`);
+    for (var k = 0; k < salaryDataArray.length; k++) {
+        if (salaryDataArray[k].slice(27,31) == '9999') {
+            //console.log(`Employee ${salaryDataArray[k].slice(1,6)} earned $: ${salaryDataArray[k].slice(7,12)} in year: ${salaryDataArray[k].slice(27,31)}`);
 
-    for (var l = 0; l < employeeId.length; l++){
-        for (var m = 0; m < employeeId[l].length; m++)
-            if (employeeId[l][m] == salaryDataArray[k].slice(1,6)) {
-                salaries[l].push(salaryDataArray[k].slice(7,12));
+        for (var l = 0; l < employeeId.length; l++){
+            for (var m = 0; m < employeeId[l].length; m++)
+                if (employeeId[l][m] == salaryDataArray[k].slice(1,6)) {
+                    salaries[l].push(salaryDataArray[k].slice(7,12));
+                }
             }
         }
     }
-}
+    //push Zeros as placeholders
+    for (var n = 0; n < salaries.length; n++){
+            if (salaries[n] == "") {
+                salaries[n].push(0);
+            }
+        }
 console.log(`salaries are: ${salaries}`);
 });
 
@@ -127,11 +130,23 @@ for (var n = 0; n < employeeAgregate.length; n++) {
                 console.log(`Sub array: ${o} and ${p} Index of: ${employeeId[o].indexOf(employeeAgregate[n].slice(1,6))}`);
                 }
             }
+ ///SOMEWHERE INCLUDE PLACEHOLDERS
+ //Mention that employee is no longer current with company
         }
     }
+
+    //CREATE FOR LOOP FOR employeeName
+
+    //CREATE if STATEMENT (IF EMPLOYEENAME[X][X] == "")
+    //THEN PUSH 'N/A' TO SUB ARRAY
     console.log(`Employee names are : ${employeeName}`);
     salary_Calculation();
 });
 
 
 
+//use employeeID sub array to push salaries, names and anything else to other sub arrays.
+
+
+//Why are salaries going into a single dimensional array??
+//fix calculation
