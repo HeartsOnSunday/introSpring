@@ -1,18 +1,16 @@
 var fs = require('fs');
-/* 1. Create all single and multi arrarys as empty arrays
-push single sting data elements into an array as a single element
-push array data into an array to form multi d arrays */
+/* 1. Create all single and multi arrarys as empty arrays push single sting data elements into an array as a single element push array data into an array to form multi d arrays */
 
 //single arrays
 var departmentId = [];
 var departments = [];
-
 //multi dimensional arrays
 var employeeId = [];
 var employeeName = [];
 var salaries = [];
 
-// Process 'load_dept_names.txt' file and populte deptartmentId and departments
+//Load 'load_dept_names.txt' and populte deptartmentId and departments in single dimensional arrays
+//push placeholders to multidimensional arrays
 fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
     if (err) throw err;
     
@@ -30,13 +28,13 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
         salaries.push([]);
     }
 
-    console.log(`Departments are: ${departmentId}`);
-    console.log(`Departments are: ${departments}`);
-    // console.log(`Employee Names placeholders: ${employeeName}`);
-    // console.log(`Employee Salaries placehonders: ${salaries}`);
+    console.log(`Departments Id numbers are: ${departmentId}`);
+    console.log(`Department Names are: ${departments}`);
+
 });
 
 //Employee by Department
+//employee Id, salary and 9999 status
 fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
     if (err) throw err;
     var employeeDataClean = data.replace(/INSERT INTO 'dept_emp' VALUES /g, "");
@@ -45,8 +43,8 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
     for (var j=0; j < employeeDataArray.length; j++) {
         if (employeeDataArray[j].slice(28,32) == '9999'){
 
-            employeeId[departmentId.indexOf(employeeDataArray[j].slice(8,12))].push(employeeDataArray[j].slice(2,6));
-            
+            employeeId[departmentId.indexOf(employeeDataArray[j].slice(8,12))].push(employeeDataArray[j].slice(1,6));
+            console.log(`Employee #: ${employeeDataArray[j].slice(1,6)} works in department # ${employeeDataArray[j].slice(8,12)}`)
         } 
     }
     console.log(`Employee ids are: ${employeeId}`);
@@ -58,7 +56,7 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
 //push to salaries
 fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
 if (err) throw err;
-var salaryAgregate = data.split('\n');
+var salaryAgregate = data.replace(/INSERT INTO `salaries` VALUES /g, "").split('\n');
 
 
 //current salary for Employee Id 
@@ -77,8 +75,13 @@ var employeeNameClear = data.replace(/,/g, "").replace(/'/g, " ");
 var employeeAgregate = employeeNameClear.split("\n");
 
 for (var l = 0; l < employeeAgregate.length; l++) {
-console.log(`Employee id ${employeeAgregate[l].slice(1,6)} is named: ${employeeAgregate[l].slice(18,-16)}`);
+    var employeeMF = employeeAgregate[l].slice(-15, -14);
+    if (employeeMF == 'M') {
+console.log(`Employee id ${employeeAgregate[l].slice(1,6)} is named: ${employeeAgregate[l].slice(18,-16)} and he is ${employeeAgregate[l].slice(-15, -14)}`);
+} else {
+    console.log(`Employee id ${employeeAgregate[l].slice(1,6)} is named: ${employeeAgregate[l].slice(18,-16)} and she is ${employeeAgregate[l].slice(-15, -14)}`)
 }
-})
+}
+});
 
 
