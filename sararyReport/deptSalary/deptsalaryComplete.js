@@ -150,3 +150,30 @@ for (var n = 0; n < employeeAgregate.length; n++) {
 
 //Why are salaries going into a single dimensional array??
 //fix calculation
+
+
+/*
+
+Check for multidimensional arrays
+
+
+Employee ids
+numbers are valid
+what array is it pushing to (because that array is multi dimensional)
+is it a multi dimersional array?
+
+Salaries
+numbers are valid
+is it a multi dimensional array?
+
+Employee Names
+Where are they being used?
+Push N/A to those empty arrays
+
+Current Salary 
+Valid
+useless
+
+
+
+Salary Report === Needs Work!
