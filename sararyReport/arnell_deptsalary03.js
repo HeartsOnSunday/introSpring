@@ -18,4 +18,4 @@ for (var i = 0; i < departmentId.length; i++) {
     console.log(`Total Salary for ${departments[i]} is $${thisDeptSalaryTotal}`);
     console.log(`\n`);
 }
- console.log(`Total salaries all departments $ ${totalDeptSalary}`);
+    console.log(`Total salaries all departments $ ${totalDeptSalary}`);
