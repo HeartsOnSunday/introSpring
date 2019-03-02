@@ -13,8 +13,9 @@ var salaries = [];
 function salary_Calculation() {
     var deptSalaryCounter = [];
     var salaryCounter = 0;
+   // console.log(`${salaries}`);
        for (var q = 0; q < salaries.length; q++) {
-           
+            var salaryCounter = 0;
             deptSalaryCounter.push([]);
             for (var r = 0; r < salaries[q].length; r++) {
                  salaryCounter += parseInt(salaries[q][r]);
@@ -23,16 +24,21 @@ function salary_Calculation() {
             }
             deptSalaryCounter[q].push(salaryCounter);
         }
-        console.log(`Department totals are: ${deptSalaryCounter}`);
+       // console.log(`Department totals are: ${deptSalaryCounter}`);
         //console.log(`Is this a number: ${parseInt(salaries[0][0])}`);
         console.log(`Salary Report: \n`);
         //Sum that shit up!
         for (var s = 0; s < deptSalaryCounter.length; s++) {
-            console.log(`${departments[s]} Department ${departmentId[s]} Annual Salary: ${deptSalaryCounter[s]}`);
+            console.log(`${departments[s]} Department ${departmentId[s]} Annual Salary: $${deptSalaryCounter[s]}`);
             for (var t = 0; t < employeeName[s].length; t++) {
-            console.log(`${employeeName[s][t]}`); //multidimensional
-            console.log(`${employeeId[s][t]} \n`); //multidimensional
+                if (deptSalaryCounter[s] == 0) {
+                    console.log(`${employeeName[s][t]} and ${employeeId[s][t]}`);
+                } else {
+            console.log(`Employee: #${employeeId[s][t]} Name: ${employeeName[s][t]} Current Salary: $${salaries[s][t]}`); //multidimensional
+ //           console.log(`${employeeId[s][t]} \n`); //multidimensional          
             }
+         }
+         console.log(`\n`);
         }
 }
 
@@ -70,7 +76,7 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
     //Populate subArrays for departments without employees  
     for (var k = 0; k < employeeId.length; k++) {
         if (employeeId[k] == "") {
-            employeeId[k].push("N/A");
+            employeeId[k].push("No Employee Id's to list");
         }
     }
 
@@ -138,7 +144,7 @@ for (var n = 0; n < employeeAgregate.length; n++) {
     //CREATE FOR LOOP FOR employeeName
 for (var y = 0; y < employeeName.length; y++) {
     if (employeeName[y] == "") {
-        employeeName[y].push("No Employees");
+        employeeName[y].push("This Department has No Employees");
         //console.log(employeeName[y]);
     } else {
         //console.log(employeeName[y]);
