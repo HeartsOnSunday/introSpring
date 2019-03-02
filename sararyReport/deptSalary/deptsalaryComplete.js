@@ -8,8 +8,7 @@ var departments = [];
 var employeeId = [];
 var employeeName = [];
 var salaries = [];
-//console.log(`Empty array: ${salaries}`);
-//////////////////////////////////////////////////FIXITHERE!!! FOR LOOP WITH Q AND R NOT WORKING
+
 //function to calculate department salaries
 function salary_Calculation() {
     var deptSalaryCounter = [];
@@ -20,7 +19,7 @@ function salary_Calculation() {
             for (var r = 0; r < salaries[q].length; r++) {
                  salaryCounter += parseInt(salaries[q][r]);
                  //salaryCounter += salaries[q][r];
-                 console.log(`Curent salary: ${salaries[q][r]}`);
+                // console.log(`Current salary: ${salaries[q][r]}`);
             }
             deptSalaryCounter[q].push(salaryCounter);
         }
@@ -29,7 +28,11 @@ function salary_Calculation() {
         console.log(`Salary Report: \n`);
         //Sum that shit up!
         for (var s = 0; s < deptSalaryCounter.length; s++) {
-            console.log(`${departments[s]} Department ${departmentId[s]} Annual Salary: ${deptSalaryCounter[s]} \n`);
+            console.log(`${departments[s]} Department ${departmentId[s]} Annual Salary: ${deptSalaryCounter[s]}`);
+            for (var t = 0; t < employeeName[s].length; t++) {
+            console.log(`${employeeName[s][t]}`); //multidimensional
+            console.log(`${employeeId[s][t]} \n`); //multidimensional
+            }
         }
 }
 
@@ -49,12 +52,10 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
         employeeName.push([]);
         salaries.push([]);
     }
-    //console.log(`Empty salaries: ${salaries}`);
-    //console.log(`Departments Id numbers are: ${departmentId}`); VALIDATED
-    //console.log(`Department Names are: ${departments}`); VALIDATED
 });
 
-//Employee by Department //id slice, department slice and 9999 status slice
+//Employee by Department //Isolate id slice, department slice and 9999 status slice to compare 
+//If the employee is current (9999) then push their id# to the sub array at the index of their department Id
 fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
     if (err) throw err;
     var employeeDataClean = data.replace(/INSERT INTO 'dept_emp' VALUES /g, "");
@@ -64,17 +65,16 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
         if (employeeDataArray[j].slice(28,32) == '9999'){
 
             employeeId[departmentId.indexOf(employeeDataArray[j].slice(8,12))].push(employeeDataArray[j].slice(1,6));
-            //console.log(`Employee #: ${employeeDataArray[j].slice(1,6)} works in department # ${employeeDataArray[j].slice(8,12)}`); //VALID
         } 
     }
     //Populate subArrays for departments without employees  
-    for (var x = 0; x < employeeId.length; x++) {
-        if (employeeId[x] == "") {
-            employeeId[x].push("N/A");
+    for (var k = 0; k < employeeId.length; k++) {
+        if (employeeId[k] == "") {
+            employeeId[k].push("N/A");
         }
     }
 
-    console.log(`Employee ids are: ${employeeId}`);
+   // console.log(`Employee ids are: ${employeeId}`);
   
 });
 
@@ -108,7 +108,7 @@ fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
                 salaries[n].push(0);
             }
         }
-console.log(`salaries are: ${salaries}`);
+//console.log(`salaries are: ${salaries}`);
 });
 
 //Employee NAMES by ID
@@ -120,14 +120,14 @@ fs.readFile('load_employee.txt', 'utf8', function(err,data) {
     var employeeAgregate = employeeNameClear.split("\n");
 
 for (var n = 0; n < employeeAgregate.length; n++) {
-        console.log(`Employee id: '${employeeAgregate[n].slice(1,6)}' is named: ${employeeAgregate[n].slice(18,-16)}`);
+        // console.log(`Employee id: '${employeeAgregate[n].slice(1,6)}' is named: ${employeeAgregate[n].slice(18,-16)}`);
 
     for (var o = 0; o < employeeId.length; o++){
         for (var p = 0; p < employeeId[o].length; p++){
             if (employeeId[o][p] == employeeAgregate[n].slice(1,6)) {
                 //employeeName[employeeId[o].indexOf(employeeAgregate[n].slice(1,6))].push(employeeAgregate[n].slice(18,-16));
-                employeeName[o].push(employeeAgregate[n].slice(18,-16));
-                console.log(`Sub array: ${o} and ${p} Index of: ${employeeId[o].indexOf(employeeAgregate[n].slice(1,6))}`);
+                employeeName[o].push(employeeAgregate[n].slice(19,-16));
+                // console.log(`Sub array: ${o} and ${p} Index of: ${employeeId[o].indexOf(employeeAgregate[n].slice(1,6))}`);
                 }
             }
  ///SOMEWHERE INCLUDE PLACEHOLDERS
@@ -136,10 +136,17 @@ for (var n = 0; n < employeeAgregate.length; n++) {
     }
 
     //CREATE FOR LOOP FOR employeeName
-
+for (var y = 0; y < employeeName.length; y++) {
+    if (employeeName[y] == "") {
+        employeeName[y].push("No Employees");
+        //console.log(employeeName[y]);
+    } else {
+        //console.log(employeeName[y]);
+    }
+} 
     //CREATE if STATEMENT (IF EMPLOYEENAME[X][X] == "")
     //THEN PUSH 'N/A' TO SUB ARRAY
-    console.log(`Employee names are : ${employeeName}`);
+    //console.log(`Employee names are : ${employeeName}`);
     salary_Calculation();
 });
 
