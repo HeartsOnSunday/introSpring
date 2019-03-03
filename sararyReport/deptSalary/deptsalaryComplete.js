@@ -1,5 +1,5 @@
 var fs = require('fs');
-/* 1. Create all single and multi arrarys as empty arrays push single sting data elements into an array as a single element push array data into an array to form multi d arrays */
+/*git sCreate all single and multi arrarys as empty arrays push single sting data elements into an array as a single element push array data into an array to form multi d arrays */
 
 //single arrays
 var departmentId = [];
@@ -13,7 +13,10 @@ var salaries = [];
 function salary_Calculation() {
     var deptSalaryCounter = [];
     var salaryCounter = 0;
-  
+  //Validate that all variables have been calculated
+    if (salaries[0][0] == "0" || employeeName[0][0] == "This Department has No Employees" || employeeId[0][0] == "" || departments[0] == "" || departmentId[0] == ""){
+        console.log(`Data Failure, try again`);
+    } else {
        for (var q = 0; q < salaries.length; q++) {
             var salaryCounter = 0;
             deptSalaryCounter.push([]);
@@ -36,6 +39,7 @@ function salary_Calculation() {
          }
          console.log(`\n`);
         }
+}
 }
 
 //Load 'load_dept_names.txt' and populte deptartmentId and departments in single dimensional arrays
@@ -132,3 +136,10 @@ for (var y = 0; y < employeeName.length; y++) {
 //After all info is cleaned/sorted/pushed calculate salaries
     salary_Calculation();
 });
+ /*
+//validate js:73 at employeeId and/or employeeDataArray
+employeeId[departmentId.indexOf(employeeDataArray[j].slice(8,12))].push(employeeDataArray[j].slice(1,6));
+^
+
+TypeError: Cannot read property 'push' of undefined
+*/
