@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        h1 {
+            color: red;
+        }
+
+        #title {
+            color: blue;
+        }
+
+        #slogan {
+            color: green;
+        }
+
+        .style1 {
+            font-style: italic;
+        }
+
+        div {
+            width: 300px;
+            border: 1px solid green;
+            padding: 25px;
+            margin: 25px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            border-radius: 9px; /* 5px rounded corners */
+        }
+        
+        span {
+            float: left;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div>
+        <h1>Mega Corp</h1>
+    <h5 id="title" class="style1">Department Totals Report</h5>
+        
+    </div>
+    
+    
+
+    <div>
+        <h5 id="slogan" class="style1">ABC, Always Be Coding!</h5>
+        <p id="sentence">CareeDevs is Life, and Life is CareerDevs</p>
+        <span>Total Company Salaries: $</span><p id="companySalaryTotal">0000000</p>
+
+    </div>
+    
+    <script type="text/javascript">
+    
+    var salaryobj = {
+        departmentSalariesTotals: [2456987, 5456987, 456987 ],
+        departmentNames: ["Marketing", "Management", 456987 ],
+        
+        companyGrandTotal: function() {
+            var companyTotal = 0;
+            for (var i = 0; i < this.departmentSalariesTotals.length; i++) {
+                companyTotal += this.departmentSalariesTotals[i];
+            }
+            document.getElementById("companySalaryTotal").innerText = companyTotal;
+            console.log(companyTotal);
+        }
+    };
+        
+       salaryobj.companyGrandTotal(); 
+    </script>
+
+</body>
+
+</html>
