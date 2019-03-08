@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+h1 {
+color: red;
+}
+
+#title {
+color: blue;
+}
+
+#slogan {
+color: green;
+}
+
+.style1 {
+font-style: italic;
+}
+
+div {
+width: 300px;
+border: 1px solid green;
+padding: 10%;
+margin: 15%;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+border-radius: 9px; /* 5px rounded corners */
+align-content: center;
+Background-color: lavender;
+color: mediumvioletred;
+}
+
+span {
+float: left;
+}
+
+.thebutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+p {
+    font-weight: bold;
+}
+
+body {
+    background-color: lavenderblush;
+}
+
+
+</style>
+
+
+</head>
+
+<body>
+<div>
+<h1>Felicias Phone Fund</h1>
+<h5 id="title" class="style1">Fund Totals Report</h5>
+<p>Sell Phones,  Make Funds </p>
+
+</div>
+
+<div>
+    <p>Phone Name </p><span id="phoneName"></span><br>
+    <p>How many did we sell? </p><span id="phoneSales"></span><br>
+    <p>How much did each phone cost? </p><span id="phonePrices"></span><br>
+    <p>What is the totals? </p><span id="phoneTotals"></span><br>
+    <h3><span id="total">Total</span></h3>
+</div>
+
+
+<script type="text/javascript" src="feliciasPhoneFund.js" ></script>
+
+<div class="thebutton">
+        <button onclick="ayeHowMuchForThePhone();">Fund Information</button>
+    </div>
+</body>
+
+</html>
