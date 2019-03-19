@@ -1,0 +1,43 @@
+body {
+    background: grey;
+}
+
+#eMoney-logo {
+    width: 20%;
+}
+
+.links {
+    /*display: flex;*/
+
+}
+
+#mag-glass {
+    width: 10px;
+}
+
+#download {
+ width: 15px;
+ float: left;
+}
+
+.orange-button {
+    background: orange;
+    width: 15%;
+    height: 10%;
+    align-content: space-around;
+
+}
+nav-container{
+    z-index: 1;
+    display: flex;
+    z-index: 10;
+    justify-content: flex-start;
+}
+
+
+video {
+    z-index: -10;
+    position: absolute;
+}
+
+
