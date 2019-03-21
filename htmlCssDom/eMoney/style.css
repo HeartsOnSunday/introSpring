@@ -40,7 +40,7 @@ body {
 video {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,5 +62,33 @@ video {
     left: 0;
     width: 100%;
     z-index: -1;
-
 }
+
+.block-top {
+    display: block;
+    background-color: navy;
+    position: absolute;
+    Width: 100%;
+    top: 0;
+    left: 0;
+    padding: 10px;
+}
+ .white-div {
+     background-color: white;
+     color: black;
+ }
+
+ .hide-block-top {
+     position: absolute;
+     top: 0;
+     right: 0;
+     border: 3px solid white;
+     color: White;
+     height: 50px;
+     width: 50px;
+
+     
+     padding: 2px;
+     overflow: hidden;
+     border-radius: 50%;
+ }
