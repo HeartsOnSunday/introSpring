@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <button id="textFile">
+            Click Here to Load Text File
+        </button>
+        <div id="addTextHere"></div>
+
+        <script>
+        document.getElementById('textFile').addEventListener('click', loadTextFile);
+        function loadTextFile() {
+            var myXhr = new XMLHttpRequest();
+            myXhr.open('GET', 'https://api.github.com/users', true);
+
+            //.onload ensure that status == 200 ok
+           myXhr.onload = function() {
+            if (this.status == 200) {
+                // pause
+                document.getElementById("addTextHere").innerText = myXhr.responseText;
+            }
+           };
+            myXhr.send();
+            console.log(myXhr);
+            
+        }
+        </script>
+    </body>
+</html>
