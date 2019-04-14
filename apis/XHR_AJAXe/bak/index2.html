@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <button id="textFile">
+            Click Here to Load Text File
+        </button>
+        <div id="addTextHere"></div>
+
+        <script>
+        document.getElementById('textFile').addEventListener('click', loadTextFile);
+        function loadTextFile() {
+            var myXhr = new XMLHttpRequest();
+            myXhr.open('GET', 'https://api.github.com/users', true);
+
+            //.onload ensure that status == 200 ok
+           myXhr.onload = function() {
+            if (this.status == 200) {
+                
+                var objectifiedData = JSON.parse(myXhr.responseText);
+                console.log(objectifiedData);
+                console.log(objectifiedData[0].login);
+                document.getElementById("addTextHere").innerText = objectifiedData[0].login;
+            }
+           };
+            myXhr.send();
+            console.log(myXhr);
+            
+        }
+        </script>
+    </body>
+</html>
