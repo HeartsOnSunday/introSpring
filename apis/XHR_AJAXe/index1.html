@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta>
 
     </head>
     <body>
-        <button id="textFile">
-            Click Here to Load Text File
-        </button>
-        <div id="addTextHere"></div>
+        <div>
+            <button id="loadTextFile">Click Here to Load File</button>
+            <div id="loadTextHere"></div>
+        </div>
+    <script>
+        document.getElementById("loadTextFile").addEventListener('click', loadText);
 
-        <script>
-        document.getElementById('textFile').addEventListener('click', loadTextFile);
-        function loadTextFile() {
-            var myXhr = new XMLHttpRequest();
-            myXhr.open('GET', 'file1.txt', true);
+        function loadText() {
+            var xhrCall = new XMLHttpRequest();
+        //    const {apiKey} =  keys.installed;
+            var url = 'https://newsapi.org/v2/top-headlines?' +
+          'country=us&' +
+          'apiKey=c1fc56b771f24b8f86c2a603d2286503';
+            xhrCall.open('GET', url, true);
+            //console.log(xhrCall);
+            
+            //.onload checks the readystate automatically but not the status
+            xhrCall.onload = function() {
+                    var data = JSON.parse(this.responseText).articles;
+                    console.log(typeof(data));
+                    //convert data (an object) into an array (of key value pairs)
+                    // var result = Object.keys(data).map(function(key) {
+                    //     return [Number(key), data[key]];
+                    // });
+                    // console.log(typeof(result));
+                    var stuff = Object.entries(data);
+                    console.log(typeof(data));
+console.log(typeof(Object.entries(data)));
+console.log(typeof(stuff));
+ 
+var publisher = result[0][1].author;
+console.log(publisher);
 
-            //.onload ensure that status == 200 ok
-           myXhr.onload = function() {
-            if (this.status == 200) {
-                // pause
-                document.getElementById("addTextHere").innerText = myXhr.responseText;
+var postUrl = result[0][1].url;
+console.log(postUrl);
+
+var title = 
+console.log(title);
+
+                    
             }
-           };
-            myXhr.send();
-            console.log(myXhr);
+
+            xhrCall.send();
             
         }
-        </script>
+    </script>
     </body>
 </html>
+

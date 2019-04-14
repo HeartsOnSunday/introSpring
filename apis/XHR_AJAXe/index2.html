@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta>
 
     </head>
     <body>
-        <button id="textFile">
-            Click Here to Load Text File
-        </button>
-        <div id="addTextHere"></div>
+        <div>
+            <button id="loadTextFile">Click Here to Load File</button>
+            <div id="loadTextHere"></div>
+        </div>
+    <script>
+        document.getElementById("loadTextFile").addEventListener('click', loadText);
 
-        <script>
-        document.getElementById('textFile').addEventListener('click', loadTextFile);
-        function loadTextFile() {
-            var myXhr = new XMLHttpRequest();
-            myXhr.open('GET', 'https://api.github.com/users', true);
+        function loadText() {
+            var url = 'https://newsapi.org/v2/top-headlines?' +
+          'country=us&' +
+          'apiKey=c1fc56b771f24b8f86c2a603d2286503';
+var req = new Request(url);
+fetch(req)
+    .then(function(response) {
+        console.log(response.json());
+        console.log(JSON.parse(response));
+     //   console.log(typeof(response.json()));
+      //  var data = response.json();
+        console.log(typeof(data));
+        //map it
+        //const resArray = Object.values(data.map(res => 
+ //       peopleObj[res]));
+        console.log(typeof(resArray));
 
-            //.onload ensure that status == 200 ok
-           myXhr.onload = function() {
-            if (this.status == 200) {
-                // pause
-                document.getElementById("addTextHere").innerText = myXhr.responseText;
-            }
-           };
-            myXhr.send();
-            console.log(myXhr);
-            
+});
         }
-        </script>
+    </script>
     </body>
 </html>
+
