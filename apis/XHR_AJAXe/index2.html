@@ -18,16 +18,19 @@
           'apiKey=c1fc56b771f24b8f86c2a603d2286503';
 var req = new Request(url);
 fetch(req)
-    .then(function(response) {
-        console.log(response.json());
-        console.log(JSON.parse(response));
+    .then(function(res) {
+        
+        var JSONres = res.json();
+        var articles = JSONres.promise.articles;
+        console.log(articles);
+      //  console.log(JSON.parse(response));
      //   console.log(typeof(response.json()));
       //  var data = response.json();
-        console.log(typeof(data));
+        console.log(typeof(articles));
         //map it
-        //const resArray = Object.values(data.map(res => 
+        const resArray = Object.values(articles.map(res => 
  //       peopleObj[res]));
-        console.log(typeof(resArray));
+        console.log(typeof(res))));
 
 });
         }
