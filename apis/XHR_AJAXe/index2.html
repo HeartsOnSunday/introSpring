@@ -19,10 +19,13 @@
 var req = new Request(url);
 fetch(req)
     .then(function(res) {
-        
+        console.log(res);
+        console.log(typeof(res));
         var JSONres = res.json();
-        var articles = JSONres.promise.articles;
+        console.log(JSONres);
+ /*       var articles = JSONres;
         console.log(articles);
+        console.log(JSONres.articles);
       //  console.log(JSON.parse(response));
      //   console.log(typeof(response.json()));
       //  var data = response.json();
@@ -31,7 +34,7 @@ fetch(req)
         const resArray = Object.values(articles.map(res => 
  //       peopleObj[res]));
         console.log(typeof(res))));
-
+*/
 });
         }
     </script>
