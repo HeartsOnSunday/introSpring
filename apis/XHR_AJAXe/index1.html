@@ -15,8 +15,9 @@
 
         function loadText(config) {
             var xhrCall = new XMLHttpRequest();
-            console.log(config.apiKey);
+            console.log(keys.apiKey);
             const apiKey =  keys.apiKey;
+            console.log(apiKey);
             var url = 'https://newsapi.org/v2/top-headlines?' +
           'country=us&' + apiKey; 
           console.log(url);
@@ -27,6 +28,7 @@
             xhrCall.onload = function() {
                     var data = JSON.parse(this.responseText).articles;
                     console.log(typeof(data));
+                    console.log(data);
                     //convert data (an object) into an array (of key value pairs)
                     // var result = Object.keys(data).map(function(key) {
                     //     return [Number(key), data[key]];
