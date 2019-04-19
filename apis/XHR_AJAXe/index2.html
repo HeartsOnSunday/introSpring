@@ -13,7 +13,7 @@
     <script>
         document.getElementById("loadTextFile").addEventListener('click', loadText);
 
-        function loadText(keys) {
+        function loadText(config) {
             var apiKey = keys.apiKey;
             console.log("this is the api key", apiKey);
             var url = 'https://newsapi.org/v2/top-headlines?' +
@@ -42,5 +42,6 @@ fetch(req)
     </script>
     </body>
 </html>
-
+<!---
 //API Key is coming up as undefined :(
+-->
