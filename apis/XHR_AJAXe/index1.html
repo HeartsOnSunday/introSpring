@@ -7,7 +7,9 @@
     <body>
         <div>
             <button id="loadTextFile">Click Here to Load File</button>
-            <div id="loadTextHere"></div>
+            <div id="loadTextHere">
+                <span class="showData">Show Articles</span>
+            </div>
         </div>
         <script type='text/javascript' src='keys1.js'></script>
     <script>
@@ -15,9 +17,9 @@
 
         function loadText() {
             var xhrCall = new XMLHttpRequest();
-            console.log(config.apiKey);
+           // console.log(config.apiKey);
             const apiKey = config.apiKey;
-            console.log(apiKey);
+           // console.log(apiKey);
             var url = 'https://newsapi.org/v2/top-headlines?' +
           'country=us&' + apiKey; 
           console.log(url);
@@ -26,25 +28,43 @@
             
             //.onload checks the readystate automatically but not the status
             xhrCall.onload = function() {
-                    var data = JSON.parse(this.responseText).articles;
-                    console.log(typeof(data));
+                    var data = Object.entries(JSON.parse(this.responseText).articles);
+                    //console.log(typeof(data));
                     console.log(data);
                     //convert data (an object) into an array (of key value pairs)
                     // var result = Object.keys(data).map(function(key) {
                     //     return [Number(key), data[key]];
                     // });
                     // console.log(typeof(result));
-                    var stuff = Object.entries(data);
-                    console.log(typeof(data));
-console.log(typeof(Object.entries(data)));
-console.log(data);
+/*               var stuff = Object.entries(data);
+                    console.log(stuff);      */
+      //console.log(typeof(data));
+//console.log(typeof(Object.entries(data)));
+//console.log(data);
 ///////////////// -----use data to crate array
+//Replace with forEach or .map 
 for (var i = 0; i < data.length; i++) {
     console.log(data[i]);
+    var responseNum = data[i][0];
+    //test Healdine
+    var title = data[i][1].title;
+    console.log(title);
+
+
+  var p = document.createElement("p");
+  var articleMod = document.createTextNode(responseNum);
+  p.appendChild(articleMod); //create paragraphs // append paragraphs
+  var parent = document.getElementById("loadTextFile");
+  //var parent = document.getElementsByClassName("showData");
+ parent.appendChild(p);
+
+
+  //document.getElementsByClassName('showData');
+  
 } 
 
 
-
+/*
 
 var publisher = result[0][1].author;
 console.log(publisher);
@@ -54,7 +74,7 @@ console.log(postUrl);
 
 var title = 
 console.log(title);
-
+*/
                     
             }
 
@@ -65,3 +85,19 @@ console.log(title);
     </body>
 </html>
 
+<!-- Remove console.log()s 
+    
+    Delete Comments, API Key works
+
+render data inide elements
+
+
+//data is rendering
+//comment out crap
+//delete comments
+
+//write html in variable to write in for loop
+
+
+
+-->
