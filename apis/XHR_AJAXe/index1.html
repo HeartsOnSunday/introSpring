@@ -9,14 +9,14 @@
             <button id="loadTextFile">Click Here to Load File</button>
             <div id="loadTextHere"></div>
         </div>
-        <script type='text/javascript' src='keys.js'></script>
+        <script type='text/javascript' src='keys1.js'></script>
     <script>
         document.getElementById("loadTextFile").addEventListener('click', loadText);
 
-        function loadText(config) {
+        function loadText() {
             var xhrCall = new XMLHttpRequest();
-            console.log(keys.apiKey);
-            const apiKey =  keys.apiKey;
+            console.log(config.apiKey);
+            const apiKey = config.apiKey;
             console.log(apiKey);
             var url = 'https://newsapi.org/v2/top-headlines?' +
           'country=us&' + apiKey; 
