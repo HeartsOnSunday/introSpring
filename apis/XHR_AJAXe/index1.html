@@ -40,7 +40,10 @@ for (var i = 0; i < data.length; i++) {
     var responseNum = data[i][0];
     //test Healdine
     var title = data[i][1].title;
-    console.log(title);
+    var author = data[i][1].author;
+    var img = data[i][1].urlToImage;
+    var description = data[i][1].description;
+    var url = data[i][1].url;
 
 
 var h1 = document.createElement("h1");
