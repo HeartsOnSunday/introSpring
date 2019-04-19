@@ -30,17 +30,9 @@
             xhrCall.onload = function() {
                     var data = Object.entries(JSON.parse(this.responseText).articles);
                     //console.log(typeof(data));
-                    console.log(data);
-                    //convert data (an object) into an array (of key value pairs)
-                    // var result = Object.keys(data).map(function(key) {
-                    //     return [Number(key), data[key]];
-                    // });
-                    // console.log(typeof(result));
+                   // console.log(data);
 /*               var stuff = Object.entries(data);
                     console.log(stuff);      */
-      //console.log(typeof(data));
-//console.log(typeof(Object.entries(data)));
-//console.log(data);
 ///////////////// -----use data to crate array
 //Replace with forEach or .map 
 for (var i = 0; i < data.length; i++) {
@@ -51,12 +43,22 @@ for (var i = 0; i < data.length; i++) {
     console.log(title);
 
 
-  var p = document.createElement("p");
+var h1 = document.createElement("h1");
+var p = document.createElement("p");
+//var articleHead = document.createTextNode(title);
   var articleMod = document.createTextNode(responseNum);
+  h1.innerHTML = title;
   p.appendChild(articleMod); //create paragraphs // append paragraphs
   var parent = document.getElementById("loadTextFile");
   //var parent = document.getElementsByClassName("showData");
  parent.appendChild(p);
+
+ /*
+ html = `<div class="article"> ${title}</div>`;
+ console.log(html);
+ var articleParent = document.getElementById("loadTextFile");
+ articleParent.appendChild(html);
+ */
 
 
   //document.getElementsByClassName('showData');
@@ -100,6 +102,6 @@ render data inide elements
 
 //and why is data object so WEIRD?? CHECK data type
 
-
+//include dynamic html to append to parent element
 
 -->
