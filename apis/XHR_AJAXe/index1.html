@@ -17,20 +17,15 @@
 
         function loadText() {
             var xhrCall = new XMLHttpRequest();
-           // console.log(config.apiKey);
             const apiKey = config.apiKey;
-           // console.log(apiKey);
             var url = 'https://newsapi.org/v2/top-headlines?' +
           'country=us&' + apiKey; 
           console.log(url);
             xhrCall.open('GET', url, true);
-            //console.log(xhrCall);
             
             //.onload checks the readystate automatically but not the status
             xhrCall.onload = function() {
                     var data = Object.entries(JSON.parse(this.responseText).articles);
-                    //console.log(typeof(data));
-                   // console.log(data);
 /*               var stuff = Object.entries(data);
                     console.log(stuff);      */
 ///////////////// -----use data to crate array
@@ -42,20 +37,28 @@ for (var i = 0; i < data.length; i++) {
     let title = data[i][1].title;
     let author = data[i][1].author;
     let img = data[i][1].urlToImage;
-    let description = data[i][1].description;
+    let des = data[i][1].description;
     let url = data[i][1].url;
+    let pubAt = data[i][1].publishedAt;
+    let src = data[i][1].source.name;
+    
+//
+var parent = document.getElementById("loadTextFile");
 
+var h1 = document.createElement("h3");
+h1.innerHTML = title;
 
-var h1 = document.createElement("h1");
+var h6 = document.createElement("h6");
+h6.innerHTML = author;
+
 var p = document.createElement("p");
-//var articleHead = document.createTextNode(title);
-  var articleMod = document.createTextNode(responseNum);
-  h1.innerHTML = title;
-  p.appendChild(articleMod); //create paragraphs // append paragraphs
-  var parent = document.getElementById("loadTextFile");
-  //var parent = document.getElementsByClassName("showData");
- parent.appendChild(p);
+var articleDes = document.createTextNode(des);
+p.appendChild(articleDes); //create paragraphs // append paragraphs
 
+  //var parent = document.getElementsByClassName("showData");
+parent.appendChild(h1);
+parent.appendChild(h6);
+parent.appendChild(p);
  /*
  html = `<div class="article"> ${title}</div>`;
  console.log(html);
