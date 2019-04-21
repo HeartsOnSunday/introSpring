@@ -8,7 +8,7 @@
         <div>
             <button id="loadTextFile">Click Here to Load File</button>
             <div id="loadTextHere">
-                <span class="showData">Show Articles</span>
+                <span id="showData">Show Articles</span>
             </div>
         </div>
         <script type='text/javascript' src='keys1.js'></script>
@@ -41,22 +41,64 @@ for (var i = 0; i < data.length; i++) {
     let url = data[i][1].url;
     let pubAt = data[i][1].publishedAt;
     let src = data[i][1].source.name;
-    
-//
-var parent = document.getElementById("loadTextFile");
+   // console.log(typeof(data[i][1].source.name));
+    // console.log(typeof(src));
+//Clear Text
 
+let br = document.createElement("BR");
+//Create parent
+var parent = document.getElementById("loadTextHere");
+//Clear the nonsense
+let nonsense = document.getElementById("showData");
+let clear = nonsense.innerHTML = "";
+//IMAGE w LINK
+
+//anchor
+var anchor = document.createElement("A");
+//image
+let showImage = document.createElement("img");
+let imgUrl = showImage.setAttribute("src", img); 
+let imgWidth = showImage.setAttribute("style", "width: 20vmin");
+let imageHeight = showImage.setAttribute("style", "height: 20vmin");
+//let imageRound = showImage.setAttribute("style", "border-radius:);
+//let imgSRC = showImage.setAttribute("src", url);
+
+//console.log(url);
+parent.appendChild(showImage);
+parent.appendChild(br);
+//
+
+
+//
+var anchor = document.createElement("A");
+let anchorText = document.createTextNode("Read More From " + src);
+anchor.setAttribute('href', url);
+anchor.appendChild(anchorText)
+
+//let href = anchor.setAttribute("href", url);
+//let a = anchor.appendChild(anchorText);
+//console.log(url);
+
+
+
+//Title
 var h1 = document.createElement("h3");
 h1.innerHTML = title;
-
-var h6 = document.createElement("h6");
-h6.innerHTML = author;
-
+//Author
+var h5 = document.createElement("h5");
+h5.innerHTML = author;
+//SRC
+let h6 = document.createElement("h6");
+h6.innerHTML = src;
+//Description
 var p = document.createElement("p");
-var articleDes = document.createTextNode(des);
-p.appendChild(articleDes); //create paragraphs // append paragraphs
+p.innerHTML = des;
 
   //var parent = document.getElementsByClassName("showData");
+//parent.appendChild(br);
+parent.appendChild(anchor);
 parent.appendChild(h1);
+parent.appendChild(h5);
 parent.appendChild(h6);
 parent.appendChild(p);
  /*
