@@ -43,6 +43,11 @@ for (var i = 0; i < data.length; i++) {
     let src = data[i][1].source.name;
    // console.log(typeof(data[i][1].source.name));
     // console.log(typeof(src));
+ //create div with id
+ let div = document.createElement("div");
+ let divId = div.setAttribute("id", responseNum);
+ let divStyle = div.setAttribute("style", "background-image: linear-gradient(to bottom right, gray, white); padding: 20px; margin: 10px");
+ //let divPad = div.setAttribute("style", "padding: 20px");
 //Clear Text
 
 let br = document.createElement("BR");
@@ -64,11 +69,11 @@ let imageHeight = showImage.setAttribute("style", "height: 20vmin");
 //let imgSRC = showImage.setAttribute("src", url);
 
 //console.log(url);
-parent.appendChild(showImage);
-parent.appendChild(br);
-//
-
-
+parent.appendChild(div);
+//ATTACH TO DIV
+let d = document.getElementById(responseNum);
+d.appendChild(showImage);
+d.appendChild(br);
 //
 var anchor = document.createElement("A");
 let anchorText = document.createTextNode("Read More From " + src);
@@ -87,6 +92,7 @@ h1.innerHTML = title;
 //Author
 var h5 = document.createElement("h5");
 h5.innerHTML = author;
+//console.log("AUTHORS " + author);
 //SRC
 let h6 = document.createElement("h6");
 h6.innerHTML = src;
