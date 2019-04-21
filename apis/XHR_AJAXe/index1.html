@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta>
+        <meta><title>News Api</title>
 
     </head>
     <body>
@@ -11,7 +11,7 @@
                 <span id="showData">Show Articles</span>
             </div>
         </div>
-        <script type='text/javascript' src='keys1.js'></script>
+        <script type="text/javascript" src="keys1.js"></script>
     <script>
         document.getElementById("loadTextFile").addEventListener('click', loadText);
 
@@ -26,35 +26,32 @@
             //.onload checks the readystate automatically but not the status
             xhrCall.onload = function() {
                     var data = Object.entries(JSON.parse(this.responseText).articles);
-/*               var stuff = Object.entries(data);
-                    console.log(stuff);      */
+
 ///////////////// -----use data to crate array
 //Replace with forEach or .map 
 for (var i = 0; i < data.length; i++) {
     console.log(data[i]);
     var responseNum = data[i][0];
     //test Healdine
-    let title = data[i][1].title;
-    let author = data[i][1].author;
+    var title = data[i][1].title; 
+    var author = data[i][1].author;
     let img = data[i][1].urlToImage;
     let des = data[i][1].description;
     let url = data[i][1].url;
     let pubAt = data[i][1].publishedAt;
     let src = data[i][1].source.name;
-   // console.log(typeof(data[i][1].source.name));
-    // console.log(typeof(src));
  //create div with id
  let div = document.createElement("div");
  let divId = div.setAttribute("id", responseNum);
- let divStyle = div.setAttribute("style", "background-image: linear-gradient(to bottom right, gray, white); padding: 20px; margin: 10px");
- //let divPad = div.setAttribute("style", "padding: 20px");
+ let divClass = div.setAttribute("class", "flex-container");
+ let divStyle = div.setAttribute("style", "background-image: linear-gradient(to bottom right, gray, white); padding: 10px; margin: 15px; border: solid lightgray 2px; border-radius: 15px 50px 30px; width: 85%");
 //Clear Text
-
-let br = document.createElement("BR");
+var br = document.createElement("BR");
 //Create parent
 var parent = document.getElementById("loadTextHere");
+let parentStyle = parent.setAttribute("style", "background: darkgray; padding: 10px; width: 100vmin");
 //Clear the nonsense
-let nonsense = document.getElementById("showData");
+var nonsense = document.getElementById("showData");
 let clear = nonsense.innerHTML = "";
 //IMAGE w LINK
 
@@ -63,12 +60,8 @@ var anchor = document.createElement("A");
 //image
 let showImage = document.createElement("img");
 let imgUrl = showImage.setAttribute("src", img); 
-let imgWidth = showImage.setAttribute("style", "width: 20vmin");
 let imageHeight = showImage.setAttribute("style", "height: 20vmin");
-//let imageRound = showImage.setAttribute("style", "border-radius:);
-//let imgSRC = showImage.setAttribute("src", url);
 
-//console.log(url);
 parent.appendChild(div);
 //ATTACH TO DIV
 let d = document.getElementById(responseNum);
@@ -80,19 +73,12 @@ let anchorText = document.createTextNode("Read More From " + src);
 anchor.setAttribute('href', url);
 anchor.appendChild(anchorText)
 
-//let href = anchor.setAttribute("href", url);
-//let a = anchor.appendChild(anchorText);
-//console.log(url);
-
-
-
 //Title
 var h1 = document.createElement("h3");
 h1.innerHTML = title;
 //Author
 var h5 = document.createElement("h5");
 h5.innerHTML = author;
-//console.log("AUTHORS " + author);
 //SRC
 let h6 = document.createElement("h6");
 h6.innerHTML = src;
@@ -100,38 +86,15 @@ h6.innerHTML = src;
 var p = document.createElement("p");
 p.innerHTML = des;
 
-  //var parent = document.getElementsByClassName("showData");
-//parent.appendChild(br);
-parent.appendChild(anchor);
-parent.appendChild(h1);
-parent.appendChild(h5);
-parent.appendChild(h6);
-parent.appendChild(p);
- /*
- html = `<div class="article"> ${title}</div>`;
- console.log(html);
- var articleParent = document.getElementById("loadTextFile");
- articleParent.appendChild(html);
- */
+d.appendChild(anchor);
+d.appendChild(h1);
+d.appendChild(h5);
+d.appendChild(h6);
+d.appendChild(p);
 
-
-  //document.getElementsByClassName('showData');
   
 } 
-
-
-/*
-
-var publisher = result[0][1].author;
-console.log(publisher);
-
-var postUrl = result[0][1].url;
-console.log(postUrl);
-
-var title = 
-console.log(title);
-*/
-                    
+                  
             }
 
             xhrCall.send();
