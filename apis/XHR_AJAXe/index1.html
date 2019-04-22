@@ -44,12 +44,13 @@ for (var i = 0; i < data.length; i++) {
  let div = document.createElement("div");
  let divId = div.setAttribute("id", responseNum);
  let divClass = div.setAttribute("class", "flex-container");
- let divStyle = div.setAttribute("style", "background-image: linear-gradient(to bottom right, gray, white); padding: 10px; margin: 15px; border: solid lightgray 2px; border-radius: 15px 50px 30px; width: 85%");
-//Clear Text
+ let divStyle = div.setAttribute("style", "padding: 20px; margin: 20px; border: solid black 2px; border-radius: 25px 50px 30px; width: 85%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);");
+ div.style.borderWidth = "15px 5px 10px 20px";
+ //Clear Text
 var br = document.createElement("BR");
 //Create parent
 var parent = document.getElementById("loadTextHere");
-let parentStyle = parent.setAttribute("style", "background: darkgray; padding: 10px; width: 100vmin");
+let parentStyle = parent.setAttribute("style", "padding: 10px; width: 125vmin;");
 //Clear the nonsense
 var nonsense = document.getElementById("showData");
 let clear = nonsense.innerHTML = "";
@@ -69,9 +70,14 @@ d.appendChild(showImage);
 d.appendChild(br);
 //
 var anchor = document.createElement("A");
+var anchorImg = document.createElement("img");
+anchorImg.setAttribute("src", imgUrl);
 let anchorText = document.createTextNode("Read More From " + src);
+console.log(showImage);
+anchor.innerHTML = showImage;
 anchor.setAttribute('href', url);
-anchor.appendChild(anchorText)
+anchor.appendChild(anchorImg);
+console.log(typeof(anchorImg.toString()));
 
 //Title
 var h1 = document.createElement("h3");
