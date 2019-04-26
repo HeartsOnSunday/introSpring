@@ -7,6 +7,10 @@
     <body>
         <div>
             <input id="keyword" type="text">
+            
+            <div id="selectQuery">
+                    <input type="radio" name="topHeadlines" value="top-headlines"> Top Headlines<br>
+                </div>
             <button id="loadTextFile">Click Here to Load File</button>
             <div id="loadTextHere">
                 <span id="showData">Show Articles</span>
@@ -20,8 +24,9 @@
             var xhrCall = new XMLHttpRequest();
             const apiKey = config.apiKey;
             const q = document.getElementById("keyword").value
-            var url = 'https://newsapi.org/v2/top-headlines?' +
-          'country=us&' + apiKey + "&q=" + q;
+            var url = 'https://newsapi.org/v2/everything?' + "q=" + q +
+          //'&country=us&' + 
+          apiKey;
           console.log(url);
             xhrCall.open('GET', url, true);
             
