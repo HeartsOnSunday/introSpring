@@ -21,7 +21,7 @@
             const apiKey = config.apiKey;
             const q = document.getElementById("keyword").value
             var url = 'https://newsapi.org/v2/top-headlines?' +
-          'country=us&' + apiKey + q;
+          'country=us&' + apiKey + "&q=" + q;
           console.log(url);
             xhrCall.open('GET', url, true);
             
