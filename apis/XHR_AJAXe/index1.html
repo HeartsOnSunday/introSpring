@@ -6,7 +6,8 @@
     </head>
     <body>
         <div>
-            <input id="topic" type="text"><button id="loadTextFile">Click Here to Load File</button>
+            <input id="keyword" type="text">
+            <button id="loadTextFile">Click Here to Load File</button>
             <div id="loadTextHere">
                 <span id="showData">Show Articles</span>
             </div>
@@ -18,8 +19,9 @@
         function loadText() {
             var xhrCall = new XMLHttpRequest();
             const apiKey = config.apiKey;
+            const q = document.getElementById("keyword").value
             var url = 'https://newsapi.org/v2/top-headlines?' +
-          'country=us&' + apiKey; 
+          'country=us&' + apiKey + q;
           console.log(url);
             xhrCall.open('GET', url, true);
             
