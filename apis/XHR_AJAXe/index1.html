@@ -2,14 +2,19 @@
 <html>
     <head>
         <meta><title>News Api</title>
-
+        <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div>
+        <div id="main-container" class="flex-container">
             <input id="keyword" type="text">
             
             <div id="selectQuery">
-                    <input type="radio" name="topHeadlines" value="top-headlines"> Top Headlines<br>
+                <select>
+                    <option type="radio" name="topHeadlines" value="top-headlines">Show Me Top Headlines</option>
+                    <option type="radio" name="sources" value="sources">Show Me the Sources</option>
+                    <option type="radio" name="everything" value="everything">Show Me Everything</option>
+                </select>
                 </div>
             <button id="loadTextFile">Click Here to Load File</button>
             <div id="loadTextHere">
@@ -23,10 +28,9 @@
         function loadText() {
             var xhrCall = new XMLHttpRequest();
             const apiKey = config.apiKey;
-            const q = document.getElementById("keyword").value
-            var url = 'https://newsapi.org/v2/everything?' + "q=" + q +
-          //'&country=us&' + 
-          apiKey;
+           // const q = document.getElementById("keyword").value
+            var url = 'https://newsapi.org/v2/top-headlines?' +
+          'country=us&' + apiKey;
           console.log(url);
             xhrCall.open('GET', url, true);
             
