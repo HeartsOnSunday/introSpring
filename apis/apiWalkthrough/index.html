@@ -11,7 +11,7 @@
 <body>
     <div class="flex-container">
     <h6>Click Button to Retreive Data</H6>
-    <div class="sub-containers">
+    <div class="sub-containers" id="parent">
     <button id="button">Retreive Data</button>
     </div>
     </div>
@@ -20,23 +20,39 @@
     //add event listener
     document.getElementById("button").addEventListener('click', retreiveData);
     function retreiveData() {
+
         //execute api call using XHR constructor
         var xhrObject = new XMLHttpRequest();
-        xhrObject.open('GET', 'myName.txt', true);
-        console.log("Let's Party");
+        xhrObject.open('GET', 'https://api.github.com/users', true);
 
         xhrObject.onload = function() {
-            console.log("let's Party");
-            console.log(this.readyState);
+            console.log(xhrObject.readyState);
             console.log(this.statusText);
             if(this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
+                var JSONdata = JSON.parse(this.responseText);
+                for (var i = 0; i < 10; i++)
+                        console.log(`User: ${JSONdata[i].login}`);
+                        var parent = document.getElementById('parent');
+                        var div = document.createElement('div');
+                        div.setAttribute('id', JSONdata[i].id);
+                        div.setAttribute('class', 'sub-containers');
+                        parent.appendChild(div);
+                        var h3 = document.createElement('h3');
+                        h3.innerHTML = JSONdata[i].login;
+                        console.log(JSONdata[i].login);
+                        div.appendChild(h3);
+
             }
         }
-
+        
+        xhrObject.send();
 
     }
 
     </script>
+
+
+
+
 </body>
 </html>
