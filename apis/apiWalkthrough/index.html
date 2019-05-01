@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+</head>
+<body>
+    <div class="flex-container">
+    <h6>Click Button to Retreive Data</H6>
+    <div class="sub-containers">
+    <button id="button">Retreive Data</button>
+    </div>
+    </div>
+
+    <script>
+    //add event listener
+    document.getElementById("button").addEventListener('click', retreiveData);
+    function retreiveData() {
+        //execute api call using XHR constructor
+        var xhrObject = new XMLHttpRequest();
+        xhrObject.open('GET', 'myName.txt', true);
+        console.log("Let's Party");
+
+        xhrObject.onload = function() {
+            console.log("let's Party");
+            console.log(this.readyState);
+            console.log(this.statusText);
+            if(this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        }
+
+
+    }
+
+    </script>
+</body>
+</html>
