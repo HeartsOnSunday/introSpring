@@ -30,18 +30,19 @@
             console.log(this.statusText);
             if(this.readyState == 4 && this.status == 200) {
                 var JSONdata = JSON.parse(this.responseText);
-                for (var i = 0; i < 10; i++)
-                        console.log(`User: ${JSONdata[i].login}`);
+                for (var i = 0; i < 10; i++){
+                var user = JSONdata[i].login;
+                var userId = JSONdata[i].id;
+                        console.log(`User: ${user}`);
                         var parent = document.getElementById('parent');
                         var div = document.createElement('div');
-                        div.setAttribute('id', JSONdata[i].id);
-                        div.setAttribute('class', 'sub-containers');
+                        var divStyle = div.setAttribute('id', userId);
+                        var divClass = div.setAttribute('class', 'sub-containers');
                         parent.appendChild(div);
                         var h3 = document.createElement('h3');
-                        h3.innerHTML = JSONdata[i].login;
-                        console.log(JSONdata[i].login);
+                        h3.innerHTML = user;                       
                         div.appendChild(h3);
-
+                }
             }
         }
         
